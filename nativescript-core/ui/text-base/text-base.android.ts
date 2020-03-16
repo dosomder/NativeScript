@@ -377,6 +377,17 @@ function setSpanModifiers(ssb: android.text.SpannableStringBuilder, span: Span, 
     const bold = isBold(spanStyle.fontWeight);
     const italic = spanStyle.fontStyle === "italic";
 
+    /* added dosomder */
+    if (spanStyle.imageSrc && spanStyle.imageSrc !== "") {
+        var d = android.graphics.drawable.Drawable.createFromPath(spanStyle.imageSrc);
+        if(d != null) {
+            var w_h_ratio = d.getMinimumWidth() / d.getMinimumHeight();
+            d.setBounds(0, 0, 75 * w_h_ratio, 75);
+            ssb.setSpan(new android.text.style.ImageSpan(d, android.text.style.DynamicDrawableSpan.ALIGN_CENTER), start, end, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return;
+    }
+
     if (bold && italic) {
         ssb.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD_ITALIC), start, end, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }

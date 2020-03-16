@@ -51,6 +51,11 @@ export class Span extends ViewBase {
      */
     public text: string;
 
+    /**
+     * Image source if ImageSpan
+     */
+    public imageSrc: string;
+
     //@private
     /**
      * @private
